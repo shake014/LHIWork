@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{pslatex}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\title{Analyzing PIV Data: Concluding Report and Future Directions}
+\author{Sammy Shaker}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+Particle image velocimetry (PIV) allows for the analysis of fluid flow properties in the entire field of flow simultaneously using photoactive tracer particles to provide a flow simulating agent for digital cameras to capture. Once data is collected, however, it must be put through a postprocessing procedure to produce additional relevant data for any application. In the case of heart valve analysis, the single most important piece of information for potential implants is the magnitude of Reynolds shear stress caused by the valve's opening, as shear stress activates platelets, which can cause the formation of clots and thus endanger the valve's recipient. This document details the process through which PIV data can be processed to provide shear stress data from initiailly collected PIV data.
+
+\section*{Methods}
+Using postprocessing software, upload the relevant data files containing position and velocity data for every point in the relevant field of view. While almost any software can be used, the process for MATLAB is detailed here.
+
+Open MATLAB and create a new, empty 1X1 structure. Then, have MATLAB create an importfile program that imports file data in the desired form. Using the preformed importfile program, import data into the structure as matrices with four columns designated for the x-position, y-position, x-velocity, and y-velocity. Perform this procedure on all relevant data files.
+
+Once data is imported, the user should select the time range over which velocity should be averaged, and once this is done the user should average the velocity for both the x- and y-directions. This average velocity can then be used to determine the deviation from the average for each time point under consideration in both x- and y-directions. The product of both deviations at each point along with the fluid density can then be summed over each timepoint to produce the Reynolds shear stress.
+
+\section*{Results}
+In analyzing the fluid flow around a tissue-engineered heart valve, the results of this PIV analysis required some comparative data to indicate the appropriateness of the values received from the analysis. Using data received from a paper detailing porcine bioprosthetic heart valves, the results of PIV analysis performed according to the above protocol were compared to the porcine values to assess both the appropriateness of the shear stress values as well as timing of the values in the valve's cycle. The results of such data are seen below. The timing of the values in the valve's cycle compares well with that of the porcine valve, considering that the tissue-engineered valve worked at a frequency of 1 Hz and the porcine valve worked at a frequency of 1.2 Hz. The magnitude of the shear stress values also compare well, with nearly equal maximum shear stresses within the relevant portions of the cycle. 
+
+\begin{table}[h]
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{3.5cm}|} \hline
+Time in Cycle (ms) & Porcine Valve Shear Stresses (dynes/cm$^{2}$) & Tissue-Engineered Valve Shear Stresses (dynes/cm$^{2}$)  \\ \hline
+0                                      & 1156                                                                          & 309.3                                                                                  \\ \hline
+40                                     & 1958                                                                          & 114.1                                                                                  \\ \hline
+120                                    & 3469                                                                          & 1636                                                                                   \\ \hline 
+160                                    & 1871                                                                          & 4179.3                                                                                 \\ \hline 
+240                                    & 1481                                                                          & 3493.9 \\ \hline                                                                              
+\end{tabular}
+\end{table}
+
+
+
+\end{document}
